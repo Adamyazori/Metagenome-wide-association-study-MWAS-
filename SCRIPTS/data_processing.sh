@@ -2,7 +2,8 @@
 
 module load bwa/0.7
 module load fastp/0.23
-module load 
+module load samtools/1.20
+module load bedtools/2.27
 
 mkdir RawData CleanData
 
