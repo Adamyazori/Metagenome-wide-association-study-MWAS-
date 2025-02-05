@@ -1,9 +1,9 @@
 #!/bin/bash
 
 ##############Part3 Construction of the gene catalog###########################
-CleanData=./01_CleanData
-Assembly=./02_Assembly
-GeneCatalog=./03_Gene_Catalog
+CleanData=./CleanData
+Assembly=./Assembly
+GeneCatalog=./Gene_Catalog
 Scripts=~/Scripts
 
 module purge
