@@ -2,10 +2,10 @@
 
 
 #module load python/2.7
-cd 01_CleanData # this should be the folder that has all your clean fastqs for a sample group
+cd CleanData # this should be the folder that has all your clean fastqs for a sample group
 
-R1s=`ls ./*.1.fastq.gz | python -c 'import sys; print(",".join([x.strip() for x in sys.stdin.readlines()]))'`
-R2s=`ls ./*.2.fastq.gz | python -c 'import sys; print(",".join([x.strip() for x in sys.stdin.readlines()]))'`
+R1s=`ls ./*.R1.fastq.gz | python -c 'import sys; print(",".join([x.strip() for x in sys.stdin.readlines()]))'`
+R2s=`ls ./*.R2.fastq.gz | python -c 'import sys; print(",".join([x.strip() for x in sys.stdin.readlines()]))'`
 
 module load megahit/1.2
 
