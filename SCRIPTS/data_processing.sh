@@ -1,19 +1,18 @@
 #!/bin/bash
 
+module load bwa/0.7
+module load fastp/0.23
+module load 
 
-mkdir 00_RawData 01_CleanData
+mkdir RawData CleanData
 
-##############Part1 QC: Rawdata to CleanData###########################
-fastp=~/bin/fastp
-bwa=~/bin/bwa
-samtools=~/bin/samtools
-bedtools=~/bin/bedtools
+##############Rawdata to CleanData###########################
+
 Ref=~/HostReads/BosT_Ref/bosTau9.fa
-Ref1=~/HostReads/HuManRef/homoSapien.all.fa
-RawData=./00_RawData
-CleanData=./01_CleanData
+Ref=~/HostReads/HuManRef/HSapien.all.fa
+RawData=./RawData
+CleanData=./CleanData
 
-#Before performing the metagenomic pipeline, copy the raw sequencing data into the directory '00_Rawdata'.
 cd ${CleanData}
 ##QC Step1: filter low quality sequence by fastp 
 ${fastp} -i ${RawData}/${SampleID}_1.raw.fq.gz \
@@ -25,10 +24,10 @@ ${fastp} -i ${RawData}/${SampleID}_1.raw.fq.gz \
 -W 4 -M 20 -n 5 -c -l 50 -w 3
 
 
-##QC Step2: filt host sequence
+##QC Step2: filt host sequence (bovine & human)
 #index of reference genome
 ${bwa} index -a bwtsw -p ~/bosTau9.fa.1 ${Ref}
-${bwa} index -a bwtsw -p ~/homoSapien.all.fa.1 ${Ref1}
+${bwa} index -a bwtsw -p ~/HSapien.all.fa.1 ${Ref}
 
 #mapping to reference
 ${bwa} mem -t 8 -T 30 \
